@@ -1,10 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/App';
+
+//Router
+import { BrowserRouter as Router, Routes as RoutesList, Route } from 'react-router-dom';
+
+//Pages
+import Home from './pages/Home';
+import Login from './pages/Login';
+import User from './pages/User';
+import Error from './pages/Error';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <RoutesList>
+        
+        {/*Accueil*/}
+        <Route path="/" element={<Home/>}></Route>
+        
+        {/*Connexion*/}
+        <Route path="/login" element={<Login/>}></Route>
+
+         {/*Utilisateur*/}
+         <Route path="/user/:userId" element={<User/>}></Route>
+
+        {/*Erreur*/}
+        <Route path="*" element={<Error/>}></Route>
+        
+      </RoutesList>
+    </Router>
   </React.StrictMode>
 );
