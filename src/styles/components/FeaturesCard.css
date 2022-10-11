@@ -1,0 +1,29 @@
+.features__card
+{
+    text-align: center;
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.features__card__image
+{
+    width: 100px;
+    border: 10px solid #00bc77;
+    border-radius: 50%;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.features__card__title
+{
+    color: #222222;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+.features__card__description
+{
+    text-align: center;
+    margin: 1rem;
+}
