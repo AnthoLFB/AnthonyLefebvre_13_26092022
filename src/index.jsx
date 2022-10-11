@@ -10,6 +10,10 @@ import Login from './pages/Login';
 import User from './pages/User';
 import Error from './pages/Error';
 
+//Style
+import './styles/global/Reset.css'
+import './styles/global/Global.css'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
