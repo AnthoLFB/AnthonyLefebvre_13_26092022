@@ -1,0 +1,33 @@
+.banner
+{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-image: url('../../assets/images/home/bank-tree.jpeg');
+    background-position: 0 33%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner__text-container
+{
+    background-color: #FFFFFF;
+    width: 300px;
+    margin-right: 50px;
+    padding: 2rem;
+}
+
+.banner__text-container__subtitle
+{
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.banner__text-container__text
+{
+    margin-top: 1em;
+    font-size: 1.2rem;
+}
