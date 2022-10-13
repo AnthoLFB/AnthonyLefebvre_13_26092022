@@ -4,6 +4,7 @@ import React from 'react';
 //Components
 import Banner from '../../components/Banner';
 import FeaturesCard from '../../components/FeaturesCard';
+import Footer from '../../components/Footer';
 
 //Images
 import chatIcon from '../../assets/images/home/icon-chat.png';
@@ -28,6 +29,7 @@ function Home() {
           <FeaturesCard logo={securityIcon} altMessage={"Security Icon"} catchphrase={"Security you can trust"} description={"We use top of the line encryption to make sure your data and money is always safe."} />
         </section> 
       </main>
+      <Footer />
     </React.Fragment>
   );
 }
