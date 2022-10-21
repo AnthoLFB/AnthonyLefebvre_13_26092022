@@ -10,7 +10,7 @@ import '../styles/components/Header.css';
 function Header ({isLoggedIn, userName, userId})
 {   
     //Temporary use before importing redux states
-    isLoggedIn = true;
+    isLoggedIn = false;
     userName = "Tony";
     userId = 1;
 
