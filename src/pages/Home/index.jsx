@@ -2,6 +2,7 @@
 import React from 'react';
 
 //Components
+import Header from '../../components/Header';
 import Banner from '../../components/Banner';
 import FeaturesCard from '../../components/FeaturesCard';
 import Footer from '../../components/Footer';
@@ -19,6 +20,7 @@ import '../../styles/responsive/pages/Home.css';
 function Home() {
   return (
     <React.Fragment>
+      <Header />
       <main>
         <h1 className='screen-reader-only'>Argent Bank</h1>
         <Banner />
