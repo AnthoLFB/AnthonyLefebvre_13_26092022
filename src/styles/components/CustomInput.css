@@ -1,0 +1,36 @@
+.field__container
+{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.field__container--horizontal
+{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.field__container__label
+{
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.field__container__input
+{
+    padding: 5px;
+    font-size: 1.2rem;
+}
+
+.field__container--horizontal__label
+{
+    margin-left: 0.5em;
+}
+
+.field__container--horizontal__input, .field__container--horizontal__label
+{
+    margin-bottom: 1rem;
+}
