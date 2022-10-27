@@ -1,10 +1,18 @@
 //React
 import React from 'react';
 
+//Components
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 function User() {
   return (
     <React.Fragment>
-      <p>Page utilisateur</p>
+      <Header />
+      <main className='main-user'>
+
+      </main>
+      <Footer />
     </React.Fragment>
   );
 }

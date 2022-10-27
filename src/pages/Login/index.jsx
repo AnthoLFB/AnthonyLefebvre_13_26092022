@@ -13,7 +13,7 @@ function Login() {
   return (
     <React.Fragment>
       <Header />
-      <main className='main'>
+      <main className='main-login'>
         <h1 className='screen-reader-only'>Login Form</h1>
         <LoginForm />
       </main>
