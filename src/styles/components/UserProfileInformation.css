@@ -1,0 +1,58 @@
+.profile, .profile__update-form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile
+{
+    color: #FFFFFF;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.profile__title
+{
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 1.75rem;
+}
+
+.profile__button
+{
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #00bc77;
+    border-color: #00bc77;
+    text-decoration: none;
+    font-size: 0.8em;
+    padding: 10px;
+    border-bottom: 2px Solid #00754a;
+    border-right: 2px Solid #00754a;
+}
+
+.profile__update-form__fields-container__input
+{
+    margin: 0 0.75em 1em 0.75em;
+    background-color: #FFFFFF;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+}
+
+.profile__update-form__fields-container__button
+{
+    margin: 0 0.75em 1em 0.75em;
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #00bc77;
+}
+
+.profile__update-form__fields-container__button:hover
+{
+    background-color: #00754a;
+}
