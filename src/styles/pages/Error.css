@@ -1,0 +1,12 @@
+body, #root
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-error
+{
+    flex: 1;
+    background-color: #12002b;
+}
