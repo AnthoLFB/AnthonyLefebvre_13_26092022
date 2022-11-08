@@ -1,0 +1,27 @@
+.error
+{
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5em;
+}
+
+.error__title
+{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.error__code
+{
+    font-size: 15rem;
+    font-weight: bolder;
+    text-decoration: underline;
+    text-decoration-color: #00bc77;
+    margin-bottom: 3rem;
+}
+
+.error__message
+{
+    font-size: 1.5rem;
+}
