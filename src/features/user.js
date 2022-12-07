@@ -10,6 +10,7 @@ const initialState = {
 //Actions
 const UPDATE_USER_LOGIN_STATUS = "updateUserStatus";
 const DISPLAY_ERROR = "dispayErrorToUser";
+const GET_USER = "userDataRecovery";
 
 //Action creator
 
@@ -63,6 +64,56 @@ export  async function getUserToken(e, store)
     }
 }
 
+export async function getUserProfile(token, store)
+{
+    
+    const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/profile`;
+    
+    const requestOptions = 
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    try
+    {
+        fetch(fetchRoute, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            if(result.status === 200)
+            {
+                const id = result.body.id
+                const firstName = result.body.firstName;
+                const lastName = result.body.lastName
+                let user = 
+                {
+                    id: id, 
+                    firstName: firstName,
+                    lastName: lastName
+                }
+                store.dispatch(displayErrorToUser(null));
+                store.dispatch({type: GET_USER, payload: user});
+            }
+            else
+            {
+                const error = {
+                    code: result.status, 
+                    message: result.message
+                }
+                store.dispatch(displayErrorToUser(error));
+            }
+        });
+    }
+    catch (error)
+    {
+        console.log(error);
+    }
+    
+}
+
 //Reducer
 export default function userReducer(state = initialState, action)
 {
@@ -79,6 +130,13 @@ export default function userReducer(state = initialState, action)
                 draft.error = action.payload;
                 return draft
             }
+
+            case GET_USER:
+            {
+                draft.data = action.payload;
+                return   
+            }
+
             default:
                 return;
         }
