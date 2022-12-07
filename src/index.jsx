@@ -11,29 +11,35 @@ import User from './pages/User';
 import Error from './pages/Error';
 
 //Style
-import './styles/global/Reset.css'
-import './styles/global/Global.css'
+import './styles/global/Reset.css';
+import './styles/global/Global.css';
 
+//Redux
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <RoutesList>
-        
-        {/*Accueil*/}
-        <Route path="/" element={<Home/>}></Route>
-        
-        {/*Connexion*/}
-        <Route path="/login" element={<Login/>}></Route>
 
-         {/*Utilisateur*/}
-         <Route path="/user/:userId" element={<User/>}></Route>
+  <Provider store={store}>
+    <React.StrictMode>
+      <Router>
+        <RoutesList>
+          
+          {/*Accueil*/}
+          <Route path="/" element={<Home/>}></Route>
+          
+          {/*Connexion*/}
+          <Route path="/login" element={<Login/>}></Route>
 
-        {/*Erreur*/}
-        <Route path="*" element={<Error/>}></Route>
-        
-      </RoutesList>
-    </Router>
-  </React.StrictMode>
+          {/*Utilisateur*/}
+          <Route path="/profile" element={<User/>}></Route>
+
+          {/*Erreur*/}
+          <Route path="*" element={<Error/>}></Route>
+          
+        </RoutesList>
+      </Router>
+    </React.StrictMode>
+  </Provider>
 );
