@@ -96,6 +96,7 @@ export async function getUserProfile(token, store)
                 }
                 store.dispatch(displayErrorToUser(null));
                 store.dispatch({type: GET_USER, payload: user});
+                return
             }
             else
             {
@@ -104,6 +105,7 @@ export async function getUserProfile(token, store)
                     message: result.message
                 }
                 store.dispatch(displayErrorToUser(error));
+                return
             }
         });
     }
