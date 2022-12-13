@@ -2,7 +2,6 @@ import {produce} from 'immer';
 
 const initialState = {
     isUserLoggedIn: false,
-    userToken: null,
     data: null,
     error: null
 }
@@ -11,6 +10,7 @@ const initialState = {
 const UPDATE_USER_LOGIN_STATUS = "updateUserStatus";
 const DISPLAY_ERROR = "dispayErrorToUser";
 const GET_USER = "userDataRecovery";
+const LOGOUT = "userLogout";
 
 //Action creator
 
@@ -113,7 +113,12 @@ export async function getUserProfile(token, store)
     {
         console.log(error);
     }
-    
+}
+
+export function logout(store)
+{
+    localStorage.clear();
+    store.dispatch({type: LOGOUT});
 }
 
 //Reducer
@@ -137,6 +142,11 @@ export default function userReducer(state = initialState, action)
             {
                 draft.data = action.payload;
                 return   
+            }
+
+            case LOGOUT:
+            {
+                return initialState;   
             }
 
             default:
