@@ -1,11 +1,20 @@
 //React
 import React from 'react';
+import { useEffect } from 'react';
+
+//Redux
+import { useSelector } from 'react-redux';
+
+//Selectors Redux
+import {isUserLoggedIn, isThereAnError} from '../../utils/selectors';
+
+//React-router
+import { useNavigate } from 'react-router-dom';
 
 //Components
 import Header from '../../components/Header';
 import Account from '../../components/Account';
 import Footer from '../../components/Footer';
-import DisplayError from '../../components/DisplayError';
 
 //CSS
 import '../../styles/pages/User.css';
@@ -13,10 +22,22 @@ import UserProfileInformation from '../../components/UserProfileInformation';
 
 function User() {
 
-  //temporary variable to change the state
-  let isUserLoggedfIn = true;
+  const loginStatus = useSelector(isUserLoggedIn);
+  const errorStatus = useSelector(isThereAnError);
+  const navigate = useNavigate();
 
-  if(isUserLoggedfIn)
+  useEffect(() => {
+      if(loginStatus === false)
+      {
+          navigate("/login");
+      }
+      else if(errorStatus != null)
+      {
+          console.log(errorStatus);
+      }
+    }, [loginStatus, errorStatus, navigate]);
+
+  if(loginStatus)
   {
     return (
       <React.Fragment>
@@ -32,16 +53,6 @@ function User() {
       </React.Fragment>
     );
   }
-
-  return (
-    <React.Fragment>
-      <Header />
-      <main className='main-user'>
-        <DisplayError errorCode={"401"} errorMessage={"Access denied. You must be logged in to access this content."}/>
-      </main>
-      <Footer />
-    </React.Fragment>
-  );
 }
 
 export default User;

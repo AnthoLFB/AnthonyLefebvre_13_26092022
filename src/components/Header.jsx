@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useSelector, useStore } from 'react-redux';
 
 //Action Redux
-import { getUserProfile } from '../features/user';
+import { getUserProfile, logout } from '../features/user';
 
 //Selectors Redux
 import {isUserLoggedIn, userData} from '../utils/selectors';
@@ -30,7 +30,7 @@ function Header ()
         {
             getUserProfile(localStorage.getItem("jwt"), store);
         }
-      }, [loginStatus, store]);
+    }, [loginStatus, store]);
 
     if(loginStatus && user != null)
     {
@@ -41,7 +41,7 @@ function Header ()
                         <li className="header__navbar__list__item"><NavLink className="header__navbar__list__item__link" to="/"><img className="header__navbar__list__item__link__image" src={logo} alt="Home page - ArgentBankLogo"/></NavLink></li>                      
                         <div className="header__navbar__list__item__container">
                             <li className="header__navbar__list__item__container__user-info"><NavLink className="header__navbar__list__item__link" to={`/profile`}><i className="fa fa-user-circle"></i> {user.firstName}</NavLink></li>
-                            <li className="header__navbar__list__item__container__user-info"><NavLink className="header__navbar__list__item__link" to="/"><i className="fa fa-sign-out"></i> Sign Out</NavLink></li>
+                            <li className="header__navbar__list__item__container__user-info"><button className='header__navbar__list__item__link header__navbar__list__item__button' onClick={() => logout(store)}>Sign Out</button></li>
                         </div>
                     </ul>
                 </nav>
