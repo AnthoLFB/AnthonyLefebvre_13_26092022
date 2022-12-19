@@ -1,9 +1,6 @@
 //Redux
 import { getUserToken } from '../features/user';
-import { useStore, useSelector } from 'react-redux';
-
-//Selectors Redux
-import { isThereAnError } from '../utils/selectors';
+import { useStore } from 'react-redux';
 
 //Components
 import CustomInput from "./CustomInput";
@@ -12,13 +9,9 @@ import CustomBtn from "./CustomBtn";
 //CSS
 import '../styles/components/LoginForm.css';
 
-
-
-function LoginForm()
+function LoginForm({errorStatus})
 {
-
     const store = useStore();
-    const errorStatus = useSelector(isThereAnError);
 
     if(errorStatus != null)
     {

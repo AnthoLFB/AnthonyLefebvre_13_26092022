@@ -39,7 +39,7 @@ function Login() {
       <Header />
       <main className='main-login'>
         <h1 className='screen-reader-only'>Login Form</h1>
-        <LoginForm />
+        <LoginForm errorStatus={errorStatus}/>
       </main>
       <Footer />
     </React.Fragment>
