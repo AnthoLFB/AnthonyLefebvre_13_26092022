@@ -1,15 +1,3 @@
-//React
-import { useEffect } from 'react';
-
-//Redux
-import { useSelector, useStore } from 'react-redux';
-
-//Action Redux
-import { getUserProfile } from '../features/user';
-
-//Selectors Redux
-import {isUserLoggedIn, userData} from '../utils/selectors';
-
 //Links
 import { NavLink } from "react-router-dom";
 
@@ -19,19 +7,8 @@ import logo from "../assets/images/header/argentBankLogo.png";
 //CSS
 import '../styles/components/Header.css';
 
-function Header ()
+function Header({loginStatus, user})
 {   
-    const store = useStore();
-    const loginStatus = useSelector(isUserLoggedIn);
-    const user = useSelector(userData);
-
-    useEffect(() => {
-        if(loginStatus)
-        {
-            getUserProfile(localStorage.getItem("jwt"), store);
-        }
-      }, [loginStatus, store]);
-
     if(loginStatus && user != null)
     {
         return(
