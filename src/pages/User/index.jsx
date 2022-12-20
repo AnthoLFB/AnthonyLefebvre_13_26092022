@@ -1,6 +1,12 @@
 //React
 import React from 'react';
 
+//Redux
+import { useSelector } from 'react-redux'
+
+//Selectors Redux
+import {isUserLoggedIn, userData} from '../../utils/selectors';
+
 //Components
 import Header from '../../components/Header';
 import Account from '../../components/Account';
@@ -11,16 +17,17 @@ import DisplayError from '../../components/DisplayError';
 import '../../styles/pages/User.css';
 import UserProfileInformation from '../../components/UserProfileInformation';
 
-function User() {
+function User() 
+{
 
-  //temporary variable to change the state
-  let isUserLoggedfIn = true;
+  const loginStatus = useSelector(isUserLoggedIn);
+  const user = useSelector(userData);
 
-  if(isUserLoggedfIn)
+  if(loginStatus)
   {
     return (
       <React.Fragment>
-        <Header />
+        <Header loginStatus={loginStatus} user={user}/>
         <main className='main-user'>
           <UserProfileInformation name={"Antho"} lastname={"LFB"}/>
           <h2 className='screen-reader-only'>Accounts</h2>
@@ -35,7 +42,7 @@ function User() {
 
   return (
     <React.Fragment>
-      <Header />
+      <Header loginStatus={loginStatus} user={user}/>
       <main className='main-user'>
         <DisplayError errorCode={"401"} errorMessage={"Access denied. You must be logged in to access this content."}/>
       </main>

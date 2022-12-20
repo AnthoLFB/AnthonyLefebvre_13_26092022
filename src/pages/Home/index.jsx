@@ -1,6 +1,12 @@
 //React
 import React from 'react';
 
+//Redux
+import { useSelector } from 'react-redux'
+
+//Selectors Redux
+import {isUserLoggedIn, userData} from '../../utils/selectors';
+
 //Components
 import Header from '../../components/Header';
 import Banner from '../../components/Banner';
@@ -17,10 +23,14 @@ import '../../styles/pages/Home.css';
 import '../../styles/responsive/pages/Home.css';
 
 
-function Home() {
+function Home()
+{
+  const loginStatus = useSelector(isUserLoggedIn);
+  const user = useSelector(userData);
+  
   return (
     <React.Fragment>
-      <Header />
+      <Header loginStatus={loginStatus} user={user}/>
       <main>
         <h1 className='screen-reader-only'>Argent Bank</h1>
         <Banner />
