@@ -6,42 +6,38 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 //Selectors Redux
-import {isUserLoggedIn, isThereAnError} from '../../utils/selectors';
+import {isUserLoggedIn, userData} from '../../utils/selectors';
 
 //React-router
 import { useNavigate } from 'react-router-dom';
 
 //Components
 import Header from '../../components/Header';
+import UserProfileInformation from '../../components/UserProfileInformation';
 import Account from '../../components/Account';
 import Footer from '../../components/Footer';
 
 //CSS
 import '../../styles/pages/User.css';
-import UserProfileInformation from '../../components/UserProfileInformation';
 
-function User() {
-
+function User() 
+{
   const loginStatus = useSelector(isUserLoggedIn);
-  const errorStatus = useSelector(isThereAnError);
+  const user = useSelector(userData);
   const navigate = useNavigate();
 
   useEffect(() => {
-      if(loginStatus === false)
-      {
-          navigate("/login");
-      }
-      else if(errorStatus != null)
-      {
-          console.log(errorStatus);
-      }
-    }, [loginStatus, errorStatus, navigate]);
+    if(!loginStatus)
+    {
+        navigate("/login");
+    }
+  }, [loginStatus, navigate]);
 
   if(loginStatus)
   {
     return (
       <React.Fragment>
-        <Header />
+        <Header loginStatus={loginStatus} user={user}/>
         <main className='main-user'>
           <UserProfileInformation name={"Antho"} lastname={"LFB"}/>
           <h2 className='screen-reader-only'>Accounts</h2>

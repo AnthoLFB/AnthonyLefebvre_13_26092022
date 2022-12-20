@@ -1,5 +1,10 @@
+//Immer
 import {produce} from 'immer';
 
+//Selectors Redux
+import { isThereAnError } from '../utils/selectors';
+
+//Init
 const initialState = {
     isUserLoggedIn: false,
     data: null,
@@ -13,14 +18,15 @@ const GET_USER = "userDataRecovery";
 const LOGOUT = "userLogout";
 
 //Action creator
-
 const updateUserLoginStatus = (userLoginStatus) => ({type: UPDATE_USER_LOGIN_STATUS, payload: userLoginStatus });
-
 const displayErrorToUser = (error) => ({type: DISPLAY_ERROR, payload: error});
 
 export  async function getUserToken(e, store) 
 {
     e.preventDefault();
+
+    const errorStatus = isThereAnError(store.getState()) ?? true;
+
     const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/login`;
     const userEmail = document.getElementById('userEmail').value;
     const userPassword = document.getElementById('userPassword').value;
@@ -42,7 +48,7 @@ export  async function getUserToken(e, store)
         .then((result) => {
             if(result.status === 200)
             {
-                store.dispatch(displayErrorToUser(null));
+                if(errorStatus !== true){store.dispatch(displayErrorToUser(null));}
                 localStorage.setItem("jwt", result.body.token);
                 store.dispatch(updateUserLoginStatus(true));
                 return
@@ -67,6 +73,8 @@ export  async function getUserToken(e, store)
 export async function getUserProfile(token, store)
 {
     
+    const errorStatus = isThereAnError(store.getState()) ?? true;
+
     const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/profile`;
     
     const requestOptions = 
@@ -94,7 +102,7 @@ export async function getUserProfile(token, store)
                     firstName: firstName,
                     lastName: lastName
                 }
-                store.dispatch(displayErrorToUser(null));
+                if(errorStatus !== true){store.dispatch(displayErrorToUser(null));}
                 store.dispatch({type: GET_USER, payload: user});
                 return
             }

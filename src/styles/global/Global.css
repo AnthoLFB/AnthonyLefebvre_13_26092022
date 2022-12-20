@@ -13,3 +13,16 @@ html
     top: 0;
     left: 0;
 }
+
+.warning-content
+{
+    padding: 1em;
+    background-color: #ffb8b8;
+    border: Solid 4px #be0000;
+}
+
+.warning-content__message
+{
+    font: 1.5em;
+    color: #000000;
+}
