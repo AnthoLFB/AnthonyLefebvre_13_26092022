@@ -5,13 +5,16 @@ import React from 'react';
 import { useEffect } from 'react';
 
 //Redux
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
+
+//Action Redux
+import { getUserProfile } from '../../features/user';
 
 //React-router
 import { useNavigate } from 'react-router-dom';
 
 //Selectors Redux
-import {isUserLoggedIn, isThereAnError} from '../../utils/selectors';
+import {isUserLoggedIn, isThereAnError, userData} from '../../utils/selectors';
 
 //Components
 import Header from '../../components/Header';
@@ -21,22 +24,28 @@ import LoginForm from '../../components/LoginForm';
 //CSS
 import '../../styles/pages/Login.css';
 
-function Login() {
+function Login() 
+{
+  const store = useStore();
+  const loginStatus = useSelector(isUserLoggedIn);
+  const errorStatus = useSelector(isThereAnError);
+  const user = useSelector(userData)
+  const navigate = useNavigate();
 
-    const loginStatus = useSelector(isUserLoggedIn);
-    const errorStatus = useSelector(isThereAnError);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if(loginStatus && errorStatus == null)
-        {
-            navigate("/profile");
-        }
-      }, [loginStatus, errorStatus, navigate]);
+  useEffect(() => {
+    if(loginStatus && !errorStatus && user == null)
+    {
+      getUserProfile(localStorage.getItem("jwt"), store);
+    }
+    else if(loginStatus && !errorStatus && user != null)
+    {
+      navigate("/profile");
+    }
+  }, [loginStatus, errorStatus, user, store, navigate]);
 
   return (
     <React.Fragment>
-      <Header />
+      <Header loginStatus={loginStatus} user={user}/>
       <main className='main-login'>
         <h1 className='screen-reader-only'>Login Form</h1>
         <LoginForm errorStatus={errorStatus}/>
