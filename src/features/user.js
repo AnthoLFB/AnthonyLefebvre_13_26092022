@@ -72,6 +72,8 @@ export  async function getUserToken(e, store)
 export async function getUserProfile(token, store)
 {
     
+    const errorStatus = isThereAnError(store.getState()) ?? true;
+
     const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/profile`;
     
     const requestOptions = 
@@ -99,7 +101,7 @@ export async function getUserProfile(token, store)
                     firstName: firstName,
                     lastName: lastName
                 }
-                store.dispatch(displayErrorToUser(null));
+                if(errorStatus !== true){store.dispatch(displayErrorToUser(null));}
                 store.dispatch({type: GET_USER, payload: user});
             }
             else
@@ -116,7 +118,6 @@ export async function getUserProfile(token, store)
     {
         console.log(error);
     }
-    
 }
 
 //Reducer
