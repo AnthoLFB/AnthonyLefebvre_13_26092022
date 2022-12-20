@@ -39,7 +39,7 @@ function User()
       <React.Fragment>
         <Header loginStatus={loginStatus} user={user}/>
         <main className='main-user'>
-          <UserProfileInformation name={"Antho"} lastname={"LFB"}/>
+          <UserProfileInformation name={user.firstName} lastname={user.lastName}/>
           <h2 className='screen-reader-only'>Accounts</h2>
           <Account title={"Argent bank Checking (x8349)"} amount={"2,082.79"} description={"Available Balance"}/>
           <Account title={"Argent Bank Savings (x6712)"} amount={"10,928.42"} description={"Available Balance"}/>
