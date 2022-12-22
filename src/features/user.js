@@ -2,7 +2,7 @@
 import {produce} from 'immer';
 
 //Selectors Redux
-import { isThereAnError } from '../utils/selectors';
+import { isThereAnError, userData } from '../utils/selectors';
 
 //Init
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
 
 //Actions
 const UPDATE_USER_LOGIN_STATUS = "updateUserStatus";
+const UPDATE_USER_PROFILE = "updateUserProfile";
 const DISPLAY_ERROR = "dispayErrorToUser";
 const GET_USER = "userDataRecovery";
 const LOGOUT = "userLogout";
@@ -123,6 +124,92 @@ export async function getUserProfile(token, store)
     }
 }
 
+export async function updateUserProfile(e, store)
+{
+    e.preventDefault(); 
+
+    const token = localStorage.getItem("jwt");
+
+    const errorStatus = isThereAnError(store.getState()) ?? true;
+    const user = userData(store.getState());
+
+    const currentFirstName = user.firstName;
+    const currentLastName = user.lastName;
+
+    const newFirstName = document.getElementById('update-form__firstName').value;
+    const newLastName = document.getElementById('update-form__lastName').value;
+
+    if(newFirstName.length === 0 || newLastName.length === 0)
+    {
+        const error = 
+        {
+            code: null,
+            message: "Error: Fields cannot be empty."
+        }
+        store.dispatch(displayErrorToUser(error));
+        return
+    }
+    else if(newFirstName === currentFirstName || newLastName === currentLastName)
+    {
+        const error = 
+        {
+            code: null,
+            message: "Error: The fields cannot be identical. At least one of them must be different."
+        }
+        store.dispatch(displayErrorToUser(error));
+        return
+    }
+    else
+    {
+        const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/profile`;
+    
+        const requestOptions = 
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                firstName: newFirstName,
+                lastName: newLastName
+            })
+        };
+
+        try
+        {
+            fetch(fetchRoute, requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if(result.status === 200)
+                {
+                    const newUserData = 
+                    {
+                        firstName: newFirstName,
+                        lastName: newLastName
+                    };
+                    store.dispatch({type: UPDATE_USER_PROFILE, payload: newUserData});
+                    if(errorStatus !== true){store.dispatch(displayErrorToUser(null))};
+                    return
+                }
+                else
+                {
+                    const error = {
+                        code: result.status, 
+                        message: result.message
+                    }
+                    store.dispatch(displayErrorToUser(error));
+                    return
+                }
+            });
+        }
+        catch (error)
+        {
+            console.log(error);
+        }
+    }
+}
+
 export function logout(store)
 {
     localStorage.clear();
@@ -138,6 +225,13 @@ export default function userReducer(state = initialState, action)
             {
                 draft.isUserLoggedIn = action.payload;
                 return draft
+            }
+
+            case UPDATE_USER_PROFILE:
+            {
+                draft.data.firstName = action.payload.firstName;
+                draft.data.lastName = action.payload.lastName;
+                return
             }
 
             case DISPLAY_ERROR: 
