@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 //Selectors Redux
-import {isUserLoggedIn, userData} from '../../utils/selectors';
+import {isUserLoggedIn, isThereAnError, userData} from '../../utils/selectors';
 
 //React-router
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,7 @@ import '../../styles/pages/User.css';
 function User() 
 {
   const loginStatus = useSelector(isUserLoggedIn);
+  const errorStatus = useSelector(isThereAnError);
   const user = useSelector(userData);
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ function User()
       <React.Fragment>
         <Header loginStatus={loginStatus} user={user}/>
         <main className='main-user'>
-          <UserProfileInformation name={user.firstName} lastname={user.lastName}/>
+          <UserProfileInformation name={user.firstName} lastname={user.lastName} errorStatus={errorStatus}/>
           <h2 className='screen-reader-only'>Accounts</h2>
           <Account title={"Argent bank Checking (x8349)"} amount={"2,082.79"} description={"Available Balance"}/>
           <Account title={"Argent Bank Savings (x6712)"} amount={"10,928.42"} description={"Available Balance"}/>
