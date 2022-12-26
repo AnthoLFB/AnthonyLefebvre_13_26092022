@@ -11,8 +11,10 @@ import '../styles/components/LoginForm.css';
 
 function LoginForm({errorStatus})
 {
+    
     const store = useStore();
 
+    // If there is an error when sending the form, or when logging in, this is displayed to the user.
     if(errorStatus != null)
     {
         return (

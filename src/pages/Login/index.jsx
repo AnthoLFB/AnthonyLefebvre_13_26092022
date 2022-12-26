@@ -26,17 +26,23 @@ import '../../styles/pages/Login.css';
 
 function Login() 
 {
+
   const store = useStore();
-  const loginStatus = useSelector(isUserLoggedIn);
-  const errorStatus = useSelector(isThereAnError);
-  const user = useSelector(userData)
   const navigate = useNavigate();
 
+  // Retrieving useful data with selectors
+  const loginStatus = useSelector(isUserLoggedIn);
+  const errorStatus = useSelector(isThereAnError);
+  const user = useSelector(userData);
+
+
   useEffect(() => {
+    // If the user is logged in, no errors from the API are returned and the user's data has not yet been retrieved then it is retrieved.
     if(loginStatus && !errorStatus && user == null)
     {
       getUserProfile(localStorage.getItem("jwt"), store);
     }
+    // If the user is logged in, no errors from the API are returned and the user's data has been retrieved then the user is redirected to their profile page.
     else if(loginStatus && !errorStatus && user != null)
     {
       navigate("/profile");
