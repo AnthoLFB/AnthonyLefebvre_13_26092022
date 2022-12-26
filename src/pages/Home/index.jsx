@@ -25,6 +25,8 @@ import '../../styles/responsive/pages/Home.css';
 
 function Home()
 {
+
+  // Retrieving useful data with selectors
   const loginStatus = useSelector(isUserLoggedIn);
   const user = useSelector(userData);
   

@@ -15,6 +15,7 @@ const initialState = {
 const UPDATE_USER_LOGIN_STATUS = "updateUserStatus";
 const DISPLAY_ERROR = "dispayErrorToUser";
 const GET_USER = "userDataRecovery";
+const LOGOUT = "userLogout";
 
 //Action creator
 const updateUserLoginStatus = (userLoginStatus) => ({type: UPDATE_USER_LOGIN_STATUS, payload: userLoginStatus });
@@ -129,6 +130,7 @@ export async function getUserProfile(token, store)
 
                 // Calls the action to store the user's data.
                 store.dispatch({type: GET_USER, payload: user});
+                return
             }
             else
             {
@@ -139,6 +141,7 @@ export async function getUserProfile(token, store)
 
                 // Calls the action to store the error message for display to the user.
                 store.dispatch(displayErrorToUser(error));
+                return
             }
         });
     }
@@ -146,6 +149,13 @@ export async function getUserProfile(token, store)
     {
         console.log(error);
     }
+}
+
+export function logout(store)
+{
+    // Returns the initial state and deletes the data contained in the localStorage.
+    localStorage.clear();
+    store.dispatch({type: LOGOUT});
 }
 
 //Reducer
@@ -170,6 +180,11 @@ export default function userReducer(state = initialState, action)
             {
                 draft.data = action.payload;
                 return   
+            }
+
+            case LOGOUT:
+            {
+                return initialState;   
             }
 
             default:
