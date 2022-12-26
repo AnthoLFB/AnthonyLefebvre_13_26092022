@@ -17,8 +17,6 @@ import '../../styles/pages/Error.css';
 
 function Error() 
 {
-
-  // Retrieving useful data with selectors
   const loginStatus = useSelector(isUserLoggedIn);
   const user = useSelector(userData);
   
