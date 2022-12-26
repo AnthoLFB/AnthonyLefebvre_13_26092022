@@ -153,6 +153,7 @@ export async function getUserProfile(token, store)
 
 export function logout(store)
 {
+    // Returns the initial state and deletes the data contained in the localStorage.
     localStorage.clear();
     store.dispatch({type: LOGOUT});
 }

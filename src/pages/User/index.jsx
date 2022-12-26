@@ -22,10 +22,14 @@ import '../../styles/pages/User.css';
 
 function User() 
 {
-  const loginStatus = useSelector(isUserLoggedIn);
-  const user = useSelector(userData);
+
   const navigate = useNavigate();
 
+  // Retrieving useful data with selectors
+  const loginStatus = useSelector(isUserLoggedIn);
+  const user = useSelector(userData);
+
+  // When the user logs out, he's redirected to the login page.
   useEffect(() => {
     if(!loginStatus)
     {
