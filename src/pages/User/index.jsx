@@ -22,11 +22,15 @@ import '../../styles/pages/User.css';
 
 function User() 
 {
+
+  const navigate = useNavigate();
+
+  // Retrieving useful data with selectors
   const loginStatus = useSelector(isUserLoggedIn);
   const errorStatus = useSelector(isThereAnError);
   const user = useSelector(userData);
-  const navigate = useNavigate();
 
+  // When the user logs out, he's redirected to the login page.
   useEffect(() => {
     if(!loginStatus)
     {
