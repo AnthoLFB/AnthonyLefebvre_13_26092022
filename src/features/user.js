@@ -156,17 +156,24 @@ export async function updateUserProfile(e, store)
 {
     e.preventDefault(); 
 
+    // Retrieves the user's token.
     const token = localStorage.getItem("jwt");
 
+    // Used to check if an error already exists. If errorStatus is null then it takes the value true, otherwise it takes the existing state.
     const errorStatus = isThereAnError(store.getState()) ?? true;
+
+    // Retrieves the user's personal data.
     const user = userData(store.getState());
 
+    // Recovery of saved data.
     const currentFirstName = user.firstName;
     const currentLastName = user.lastName;
 
+    // Recovery of new data.
     const newFirstName = document.getElementById('update-form__firstName').value;
     const newLastName = document.getElementById('update-form__lastName').value;
 
+    // Data checks. The user should not enter data that is empty or equivalent to that already recorded. If this is the case an error message is displayed
     if(newFirstName.length === 0 || newLastName.length === 0)
     {
         const error = 
@@ -189,8 +196,10 @@ export async function updateUserProfile(e, store)
     }
     else
     {
+        // Executing the query and processing the result.
         const fetchRoute = `${process.env.REACT_APP_API_SERVER_ADDRESS}/api/v1/user/profile`;
     
+        // Options to be passed when sending the request to the API.
         const requestOptions = 
         {
             method: 'PUT',
@@ -206,9 +215,12 @@ export async function updateUserProfile(e, store)
 
         try
         {
+            // Executing the query and processing the result.
             fetch(fetchRoute, requestOptions)
             .then((response) => response.json())
             .then((result) => {
+
+                //If the API returns a code 200 then the data can be processed.
                 if(result.status === 200)
                 {
                     const newUserData = 
@@ -216,7 +228,11 @@ export async function updateUserProfile(e, store)
                         firstName: newFirstName,
                         lastName: newLastName
                     };
+
+                    // Calls for action to replace the user's data.
                     store.dispatch({type: UPDATE_USER_PROFILE, payload: newUserData});
+
+                    // Simple optimization to avoid unnecessary call to action. Checks if there is an error. If so then the action is called to reset the error message displayed to the user.
                     if(errorStatus !== true){store.dispatch(displayErrorToUser(null))};
                     return
                 }
@@ -226,6 +242,8 @@ export async function updateUserProfile(e, store)
                         code: result.status, 
                         message: result.message
                     }
+
+                    // Calls the action to store the error message for display to the user.
                     store.dispatch(displayErrorToUser(error));
                     return
                 }
