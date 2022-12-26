@@ -1,0 +1,28 @@
+html
+{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+}
+
+.screen-reader-only
+{
+    color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.warning-content
+{
+    padding: 1em;
+    background-color: #ffb8b8;
+    border: Solid 4px #be0000;
+}
+
+.warning-content__message
+{
+    font: 1.5em;
+    color: #000000;
+}

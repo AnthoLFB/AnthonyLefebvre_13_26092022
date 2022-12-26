@@ -1,0 +1,47 @@
+.account
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: Solid 1px #000000;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.account__informations
+{
+    width: 100%;
+}
+
+
+.account__informations__title, .account__informations__amount, .account__informations__description
+{
+    margin: 0 0 0.25rem 0;
+}
+
+.account__informations__title
+{
+    padding: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.account__informations__amount
+{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.account__transaction button
+{
+    text-decoration: none;
+    width: 200px;
+    border-right: 2px Solid #505050;
+    border-bottom: 2px Solid #505050;
+}

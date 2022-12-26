@@ -1,0 +1,29 @@
+/*
+    Sizes :
+    small: 576px,
+    medium: 768px,
+    large: 992px,
+    xlarge: 1200px,
+    xxlarge: 1400px,
+    ultrawide: 2560px
+*/
+
+/* ---- Responsive ---- */
+@media (max-width: 576px) 
+{
+    .error__title
+    {
+        font-size: 1.5rem;
+    }
+
+    .error__code
+    {
+        font-size: 8rem;
+        margin-bottom: 3rem;
+    }
+
+    .error__message
+    {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,29 @@
+/*
+    Sizes :
+    small: 576px,
+    medium: 768px,
+    large: 992px,
+    xlarge: 1200px,
+    xxlarge: 1400px,
+    ultrawide: 2560px
+*/
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) 
+{
+    .account
+    {
+        flex-direction: column;
+    }
+
+    .account__transaction
+    {
+        width: 100%;
+        margin-top: 1.5em;
+    }
+
+    .account__transaction button
+    {
+        width: 100%;
+    }
+}

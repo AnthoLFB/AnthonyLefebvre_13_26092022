@@ -1,0 +1,35 @@
+/*
+    Sizes :
+    small: 576px,
+    medium: 768px,
+    large: 992px,
+    xlarge: 1200px,
+    xxlarge: 1400px,
+    ultrawide: 2560px
+*/
+
+/* ---- Responsive ---- */
+@media (max-width: 576px) 
+{
+    .banner
+    {
+        justify-content: center;
+        height: 300px;
+    }
+
+    .banner__text-container
+    {
+        width: 200px;
+        margin-right: 0;
+    }
+
+    .banner__text-container__subtitle
+    {
+        font-size: 1rem;
+    }
+
+    .banner__text-container__text
+    {
+        font-size: 0.9rem;
+    }
+}
