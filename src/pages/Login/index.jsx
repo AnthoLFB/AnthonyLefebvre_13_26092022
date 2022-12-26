@@ -21,18 +21,20 @@ import LoginForm from '../../components/LoginForm';
 //CSS
 import '../../styles/pages/Login.css';
 
-function Login() {
+function Login() 
+{
+  // Information retrieval using selectors.
+  const loginStatus = useSelector(isUserLoggedIn);
+  const errorStatus = useSelector(isThereAnError);
+  const navigate = useNavigate();
 
-    const loginStatus = useSelector(isUserLoggedIn);
-    const errorStatus = useSelector(isThereAnError);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if(loginStatus && errorStatus == null)
-        {
-            navigate("/profile");
-        }
-      }, [loginStatus, errorStatus, navigate]);
+  // Redirects the user if they are logged in and no errors from the API are returned
+  useEffect(() => {
+      if(loginStatus && errorStatus == null)
+      {
+          navigate("/profile");
+      }
+    }, [loginStatus, errorStatus, navigate]);
 
   return (
     <React.Fragment>
