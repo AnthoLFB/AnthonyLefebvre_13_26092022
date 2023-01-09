@@ -9,6 +9,10 @@ import CustomBtn from "./CustomBtn";
 //CSS
 import '../styles/components/LoginForm.css';
 
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+
 function LoginForm({errorStatus})
 {
     
@@ -19,7 +23,7 @@ function LoginForm({errorStatus})
     {
         return (
             <section className="login">
-                <i className="fa fa-user-circle sign-in-icon"></i>
+                <FontAwesomeIcon icon={faCircleUser}/>
                 <h1 className="login__title">Sign in</h1>
                 <form className="login__form" action="" onSubmit={(e) => getUserToken(e, store)}>
                     <CustomInput title={"Username"} type={"email"} labelId={"userEmail"} isRequired={true}/>
@@ -36,7 +40,7 @@ function LoginForm({errorStatus})
 
     return (
         <section className="login">
-            <i className="fa fa-user-circle sign-in-icon"></i>
+            <FontAwesomeIcon icon={faCircleUser}/>
             <h1 className="login__title">Sign in</h1>
             <form className="login__form" action="" onSubmit={(e) => getUserToken(e, store)}>
                 <CustomInput title={"Username"} type={"email"} labelId={"userEmail"} isRequired={true}/>
