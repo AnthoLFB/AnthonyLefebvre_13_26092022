@@ -5,15 +5,15 @@ function CustomBtn({title, type, isActivated})
     if(isActivated)
     {
         return (
-            <div className="field__container">
-                <button className="field__container__button" type={type}>{title}</button>
+            <div className="field-container">
+                <button className="field-container__button" type={type}>{title}</button>
             </div>
         )
     }
 
     return (
-        <div className="field__container">
-            <button className="field__container__button field__container__button--disabled" type={type} disabled>{title} - (disabled)</button>
+        <div className="field-container">
+            <button className="field-container__button field--container__button--disabled" type={type} disabled>{title} - (disabled)</button>
         </div>
     )
 }
