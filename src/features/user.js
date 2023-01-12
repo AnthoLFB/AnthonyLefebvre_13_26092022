@@ -184,7 +184,7 @@ export async function updateUserProfile(e, store)
         store.dispatch(displayErrorToUser(error));
         return
     }
-    else if(newFirstName === currentFirstName || newLastName === currentLastName)
+    else if(newFirstName === currentFirstName && newLastName === currentLastName)
     {
         const error = 
         {
