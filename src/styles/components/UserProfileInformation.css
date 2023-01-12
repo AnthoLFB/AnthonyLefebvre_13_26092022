@@ -56,3 +56,13 @@
 {
     background-color: #00754a;
 }
+
+.display-true
+{
+    display: flex;
+}
+
+.display-false
+{
+    display: none;
+}
