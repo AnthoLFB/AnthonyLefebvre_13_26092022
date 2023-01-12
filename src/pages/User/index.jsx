@@ -12,7 +12,7 @@ import {isUserLoggedIn, isThereAnError, userData} from '../../utils/selectors';
 import { useNavigate } from 'react-router-dom';
 
 //Components
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import UserProfileInformation from '../../components/UserProfileInformation';
 import Account from '../../components/Account';
 import Footer from '../../components/Footer';

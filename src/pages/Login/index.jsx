@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import {isUserLoggedIn, isThereAnError, userData} from '../../utils/selectors';
 
 //Components
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import LoginForm from '../../components/LoginForm';
 

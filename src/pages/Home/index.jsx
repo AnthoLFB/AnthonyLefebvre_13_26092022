@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import {isUserLoggedIn, userData} from '../../utils/selectors';
 
 //Components
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import Banner from '../../components/Banner';
 import FeaturesCard from '../../components/FeaturesCard';
 import Footer from '../../components/Footer';
